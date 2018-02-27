@@ -14,9 +14,9 @@ shift
 echo $BASENAME
 
 # Keep a cache.
-if [ ! -d ./squashfs-root-$BASENAME/ ]; then
+if [ ! -d /tmp/squashfs-root-$BASENAME/ ]; then
 	./$NAME --appimage-extract &> /dev/null
-	mv ./squashfs-root/ ./squashfs-root-$BASENAME
+	mv ./squashfs-root/ /tmp/squashfs-root-$BASENAME
 fi
 
-./squashfs-root-$BASENAME/AppRun $@
+/tmp/squashfs-root-$BASENAME/AppRun $@
