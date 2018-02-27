@@ -8,12 +8,15 @@ error () {
 [ -z "$1" ] && error "Nothing to wrap."
 
 NAME=$1
+BASENAME=$(basename $1)
 shift
 
+echo $BASENAME
+
 # Keep a cache.
-if [ ! -d ./squashfs-root-$NAME/ ]; then
+if [ ! -d ./squashfs-root-$BASENAME/ ]; then
 	./$NAME --appimage-extract > /dev/null
-	mv ./squashfs-root/ ./squashfs-root-$NAME
+	mv ./squashfs-root/ ./squashfs-root-$BASENAME
 fi
 
-./squashfs-root-$NAME/AppRun $@
+./squashfs-root-$BASENAME/AppRun $@
